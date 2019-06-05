@@ -34,7 +34,7 @@ class Chicken extends GameObject {
     }
     subscribe(o) {
         this.observers.push(o);
-        console.log("subscribed!");
+        console.log("zombie subscribed!");
         for (let o of this.observers) {
             o.notify();
         }
@@ -54,6 +54,8 @@ class Game {
         this.gameObjects = [];
         this.gameOver = false;
         this.chicken = new Chicken();
+        this.zombie = new Zombie(this.chicken);
+        this.phone = new Phone();
         for (let c = 0; c < 10; c++) {
             this.gameObjects.push(new Zombie(this.chicken));
             this.gameObjects.push(new Phone());
@@ -62,10 +64,20 @@ class Game {
     }
     gameLoop() {
         this.chicken.update();
+        this.zombie.update();
+        this.phone.update();
         for (let go of this.gameObjects) {
             go.update();
-            if (Util.checkCollision(go, this.chicken)) {
-                console.log("Een object raakt de chicken!");
+            if (Util.checkCollision(this.phone, this.chicken)) {
+                console.log("Een telefoon raakt de chicken!");
+                this.phone.update();
+            }
+            else if (Util.checkCollision(this.zombie, this.chicken)) {
+                console.log("Een zombie raakt de chicken!");
+                this.zombie.update();
+                console.log("Game Over!");
+                this.gameOver = true;
+                console.log("OOF");
             }
         }
         if (!this.gameOver) {
@@ -128,7 +140,7 @@ class Zombie extends GameObject {
         this.y += this.yspeed;
     }
     notify() {
-        console.log("Zombie got an update!");
+        console.log("Zombie got an update!!!");
     }
 }
 window.customElements.define("zombie-component", Zombie);
