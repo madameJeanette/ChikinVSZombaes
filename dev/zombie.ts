@@ -31,7 +31,7 @@ class Zombie extends GameObject implements Observer {
         this.y += this.yspeed
     }
     public notify(){
-        console.log("Zombie got an update!")
+        console.log("Zombie got an update!")   //zombie notified of subscripton update
     }
 }
 

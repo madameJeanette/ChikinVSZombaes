@@ -24,11 +24,11 @@ class Chicken extends GameObject implements Subject {
         Util.setSpeed(this, e.clientX - this.x, e.clientY - this.y)
     }
     public subscribe(o:Observer):void {
-        // toevoegen aan array 
-        this.observers.push(o)
-        console.log("subscribed!")
+        // zombie toevoegen aan array 
+        this.observers.push(o)   
+        console.log("zombie subscribed!")     //log subscribe at chicken
         for(let o of this.observers){
-                 o.notify();
+                 o.notify();      //notify every zombie subscriber 
          }
 
     }
