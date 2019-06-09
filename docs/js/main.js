@@ -70,14 +70,21 @@ class Game {
         for (let go of this.gameObjects) {
             go.update();
             if (Util.checkCollision(this.phone, this.chicken)) {
-                console.log("The chicken used his phone!");
                 this.phone.message();
+                console.log("The chicken used the phone!");
                 this.zombie.message();
+                this.gameObjects.splice(this.gameObjects.indexOf(this.phone), 1);
+                console.log("remove phone from array");
+                this.phone.remove();
+                console.log("remove phone from dom");
+                this.phone.update();
+                this.zombie.update();
             }
             else if (Util.checkCollision(this.zombie, this.chicken)) {
                 console.log("A zombie caught the chicken!");
                 this.gameOver = true;
                 console.log("OOF");
+                this.zombie.update();
             }
         }
         if (!this.gameOver) {

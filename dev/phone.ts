@@ -15,6 +15,7 @@ class Phone extends GameObject {
 
     public message(){
         console.log("insta post liked <3 ")   //phone notified of like
+       
     }
 
 }

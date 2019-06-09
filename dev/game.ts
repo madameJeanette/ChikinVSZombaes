@@ -35,19 +35,31 @@ class Game {
          go.update()
          
          if (Util.checkCollision(this.phone, this.chicken)) {
-            console.log("The chicken used his phone!")
+                
+           
             this.phone.message() 
+            console.log("The chicken used the phone!")
             this.zombie.message()
-            // this.phone.update() 
-            
-                     
+       
+            // telefoon uit array halen
+       
+            this.gameObjects.splice(this.gameObjects.indexOf(this.phone), 1)
+       
+            console.log("remove phone from array")
+       
+            // web component uit DOM halen
+                 
+            this.phone.remove() 
+            console.log("remove phone from dom")
+            this.phone.update() 
+            this.zombie.update()                   
             }   
 
          else if(Util.checkCollision(this.zombie, this.chicken)){
             console.log("A zombie caught the chicken!")
             this.gameOver = true
             console.log("OOF")
-            // this.zombie.update()
+            this.zombie.update()
                              
             }     
                      
@@ -57,8 +69,11 @@ class Game {
         if (!this.gameOver) {
             requestAnimationFrame(() => this.gameLoop())
         }
-
+            
+      
+           
     }
+    
     
 } 
 

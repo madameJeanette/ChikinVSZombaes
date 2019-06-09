@@ -43,15 +43,7 @@ class Chicken extends GameObject implements Subject {
         }
     
 
-    // public message(o:Observer):void {
-    //     // verstuur bericht aan zombies
-
-    //     console.log("PING!")     //log subscribe at chicken
-    //     for(o of this.observers){
-    //              o.message();      //notify every observer 
-    //      }
-    // }
-
+    
 
 
 
