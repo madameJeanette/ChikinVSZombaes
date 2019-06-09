@@ -14,6 +14,8 @@ class Zombie extends GameObject implements Observer {
         this.speedmultiplier = Math.random() * 2
         this.subject = s
         this.subject.subscribe(this)
+        // this.message()
+
 
     }
 
@@ -32,6 +34,9 @@ class Zombie extends GameObject implements Observer {
     }
     public notify(){
         console.log("Zombie got an update!!!")   //zombie notified of subscripton update
+    }
+    public message(){
+        console.log("Zombie's insta post got liked <3 ")   //zombie notified of subscripton update
     }
 }
 

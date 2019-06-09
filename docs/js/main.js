@@ -53,6 +53,7 @@ class Game {
     constructor() {
         this.gameObjects = [];
         this.gameOver = false;
+        this.observers = this.observers;
         this.chicken = new Chicken();
         this.zombie = new Zombie(this.chicken);
         this.phone = new Phone();
@@ -69,13 +70,12 @@ class Game {
         for (let go of this.gameObjects) {
             go.update();
             if (Util.checkCollision(this.phone, this.chicken)) {
-                console.log("Een telefoon raakt de chicken!");
-                this.phone.update();
+                console.log("The chicken used his phone!");
+                this.phone.message();
+                this.zombie.message();
             }
             else if (Util.checkCollision(this.zombie, this.chicken)) {
-                console.log("Een zombie raakt de chicken!");
-                this.zombie.update();
-                console.log("Game Over!");
+                console.log("A zombie caught the chicken!");
                 this.gameOver = true;
                 console.log("OOF");
             }
@@ -94,6 +94,9 @@ class Phone extends GameObject {
         this.x = Math.random() * (window.innerWidth - 50);
         this.y = Math.random() * (window.innerHeight - 220);
         this.update();
+    }
+    message() {
+        console.log("insta post liked <3 ");
     }
 }
 window.customElements.define("phone-component", Phone);
@@ -141,6 +144,9 @@ class Zombie extends GameObject {
     }
     notify() {
         console.log("Zombie got an update!!!");
+    }
+    message() {
+        console.log("Zombie's insta post got liked <3 ");
     }
 }
 window.customElements.define("zombie-component", Zombie);

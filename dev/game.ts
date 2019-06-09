@@ -10,6 +10,7 @@ class Game {
 
  
     constructor() {
+        this.observers = this.observers
         this.chicken = new Chicken()
         this.zombie =  new Zombie(this.chicken)
         this.phone =  new Phone()
@@ -27,63 +28,36 @@ class Game {
         this.chicken.update()
         this.zombie.update()
         this.phone.update()
+       
         // check collision
         for (let go of this.gameObjects){
                           
          go.update()
          
          if (Util.checkCollision(this.phone, this.chicken)) {
-            console.log("Een telefoon raakt de chicken!")
+            console.log("The chicken used his phone!")
+            this.phone.message() 
+            this.zombie.message()
+            // this.phone.update() 
             
-            this.phone.update()       
+                     
             }   
 
          else if(Util.checkCollision(this.zombie, this.chicken)){
-            console.log("Een zombie raakt de chicken!")
-            this.zombie.update()
-            console.log("Game Over!")
+            console.log("A zombie caught the chicken!")
             this.gameOver = true
             console.log("OOF")
-            
-            
-                   
-              
-            }  
-
-           
-       
-               
-                   
+            // this.zombie.update()
+                             
+            }     
                      
     }
-          
                 
-            
-                 
-           
-        
-
-
-
-//             switch(variable_expression) { 
-//    case constant_expr1: { 
-//       //statements; 
-//       break; 
-//    } 
-//    case constant_expr2: { 
-//       //statements; 
-//       break; 
-//    } 
-//    default: { 
-//       //statements; 
-//       break; 
-//    } 
-
-        
         // loop aanroepen zo lang het geen game over is
         if (!this.gameOver) {
             requestAnimationFrame(() => this.gameLoop())
         }
+
     }
     
 } 

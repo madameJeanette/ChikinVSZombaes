@@ -13,6 +13,10 @@ class Phone extends GameObject {
         this.update()
     }
 
+    public message(){
+        console.log("insta post liked <3 ")   //phone notified of like
+    }
+
 }
 
 window.customElements.define("phone-component", Phone)

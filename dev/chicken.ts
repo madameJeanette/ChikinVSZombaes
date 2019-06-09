@@ -17,6 +17,7 @@ class Chicken extends GameObject implements Subject {
         this.x += this.xspeed
         this.y += this.yspeed
         super.update()
+       
     }
 
     // de beweegrichting aanpassen aan waar in het window is geklikt
@@ -39,7 +40,20 @@ class Chicken extends GameObject implements Subject {
                 this.observers.splice(i,1)
                 console.log("unsubscribed!");   
             }}
-    }
+        }
+    
+
+    // public message(o:Observer):void {
+    //     // verstuur bericht aan zombies
+
+    //     console.log("PING!")     //log subscribe at chicken
+    //     for(o of this.observers){
+    //              o.message();      //notify every observer 
+    //      }
+    // }
+
+
+
 
 
 }
